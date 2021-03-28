@@ -285,6 +285,7 @@
                 }
             })
         })
+
         //监听行工具事件
         table.on('tool(rentTable)', function (obj) {
             var data = obj.data; //获得当前行数据

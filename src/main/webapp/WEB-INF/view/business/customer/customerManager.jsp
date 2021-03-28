@@ -190,12 +190,12 @@
                 , {field: 'phone', title: '手机号码', align: 'center', width: '150'}
 
                 , {
-                    field: 'sex', title: '性别', align: 'center', width: '120', templet: function (d) {
+                    field: 'sex', title: '性别', align: 'center', width: '100', templet: function (d) {
                         return d.sex == '1' ? '<font color=blue>男</font>' : '<font color=red>女</font>';
                     }
                 }
-                , {field: 'createtime', title: '录入时间', align: 'center', width: '200'}
-                , {fixed: 'right', title: '操作', toolbar: '#customerBar', align: 'center', width: '150'}
+                , {field: 'createtime', title: '录入时间', align: 'center', width: '170'}
+                , {fixed: 'right', title: '操作', toolbar: '#customerBar', align: 'center', width: '200'}
             ]],
             done:function (data, curr, count) {
                 //不是第一页时，如果当前返回的数据为0那么就返回上一页
