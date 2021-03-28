@@ -219,6 +219,14 @@
                         }
                     })
                 }
+
+                //批量删除用户个人待租赁列表；
+                $("#deleteManyRent").off('click')
+                $("#deleteManyRent").on('click',deleteHandle)
+
+                //批量添加用户个人待租赁列表到用户个人订单
+                $("#addManyRent").off('click')
+                $("#addManyRent").on('click',addHandle)
             }
         });
 
@@ -231,8 +239,8 @@
             })
         });
 
-        //批量删除用户个人待租赁列表；
-        $("#deleteManyRent").click(function (){
+        // 批量删除方法
+        function deleteHandle(){
             console.log("进入到批量删除用户待租赁订单模块")
             table.on("toolbar(rentTable)",function (obj) {
                 var layEvent = obj.event;
@@ -256,12 +264,10 @@
                     })
                 }
             })
-        })
+        }
 
-
-
-       //批量添加用户个人待租赁列表到用户个人订单
-        $("#addManyRent").click(function (){
+        // 批量添加方法
+        function  addHandle(){
             console.log("进入到批量添加用户个人待租赁列表到用户个人订单")
             table.on("toolbar(rentTable)",function (obj) {
                 var layEvent = obj.event;
@@ -284,7 +290,15 @@
                     })
                 }
             })
-        })
+        }
+
+        //批量删除用户个人待租赁列表；
+        $("#deleteManyRent").on('click',deleteHandle)
+
+
+
+       //批量添加用户个人待租赁列表到用户个人订单
+        $("#addManyRent").on('click',addHandle)
 
         //监听行工具事件
         table.on('tool(rentTable)', function (obj) {
