@@ -4,9 +4,9 @@
 	"start": 0,
 	"data": [
 		{
-			"src": "images/bjpowernode.jpg",
-			"thumb": "images/bjpowernode.jpg",
-			"alt": "powernode",
+			"src": "images/carRent.jpg",
+			"thumb": "images/carRent.jpg",
+			"alt": "carRent",
 			"pid":"1"
 		}
 	]

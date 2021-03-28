@@ -32,7 +32,11 @@
         <input type="text" placeholder="请输入身份证号码" autocomplete="off" name="identity" id="identity" class="layui-input" lay-verify="required">
     </div>
     <div class="layui-form-item input-item">
-        <label for="custname">客户姓名</label>
+        <label >真实姓名</label>
+        <input type="text" placeholder="请输入真实姓名" autocomplete="off" name="realname" id="realname" class="layui-input" lay-verify="required">
+    </div>
+    <div class="layui-form-item input-item">
+        <label for="custname">登陆名</label>
         <input type="text" placeholder="请输入客户名" autocomplete="off" name="custname" id="custname" class="layui-input" lay-verify="required">
     </div>
     <div class="layui-form-item input-item">
@@ -62,15 +66,6 @@
         <label for="career">职业</label>
         <input type="text" placeholder="请输客户职业" autocomplete="off" name="career" id="career" class="layui-input" lay-verify="required">
     </div>
-
-    <%--<div class="layui-form-item input-item" id="imgCode">
-        <label for="code">验证码</label>
-        <input type="text" placeholder="请输入验证码" autocomplete="off" name="code" id="code" class="layui-input">
-        <img src="${alfred}/login/getCode.action" onclick="this.src=this.src+'?'">
-    </div>--%>
-    <%--<div class="layui-form-item">
-        <button class="layui-btn layui-block" lay-filter="login" lay-submit>登录</button>
-    </div>--%>
     <div class="layui-form-item">
         <span class="layui-btn layui-block" id="register">注册</span>
     </div>
@@ -124,6 +119,7 @@
                 type:"post",
                 data:{
                     identity:$("#identity").val(),
+                    realname:$("#realname").val(),
                     custname:$("#custname").val(),
                     custvalue:$("#custvalue").val(),
                     sex:$("input[name='sex']:checked").val(),

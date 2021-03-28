@@ -7,6 +7,8 @@ import java.util.Date;
 public class Customer {
     private String identity;
 
+    private String realname;
+
     private String custname;
 
     private Integer sex;
@@ -84,5 +86,13 @@ public class Customer {
 
     public void setCreatetime(Date createtime) {
         this.createtime = createtime;
+    }
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
     }
 }

@@ -23,12 +23,13 @@ public class RegisterController {
     @ResponseBody
     @Transactional
     public ResultObj register(Customer customer){
-
-        boolean flag = registerService.registerCust(customer);
-        if (flag){
+        try {
+            registerService.registerCust(customer);
             return ResultObj.ADD_SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultObj.ADD_ERROR;
         }
-        return ResultObj.ADD_ERROR;
     }
     @RequestMapping("/toRegister")
     public String toRegister(){

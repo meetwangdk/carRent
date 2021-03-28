@@ -1,12 +1,45 @@
-var form, $,areaData;
+var form, $,areaData,custname,realname,sex,phone,address,career;
 layui.config({
     base : "../../js/"
 }).extend({
     "address" : "address"
 })
+
+
 layui.use(['form','layer','upload','laydate',"address"],function(){
     form = layui.form;
     $ = layui.jquery;
+    $.ajax({
+        url:"",
+        type:"post",
+        data:{
+
+        }
+    })
+
+    $(document).ready(function(){
+        $.ajax({
+            url:"/session/getSession.action",
+            type:"get",
+            success:function (data) {
+                console.log(data);
+                identity = data.identity;
+                custname = data.loginname;
+                realname = data.realname;
+                sex = data.sex;
+                phone = data.phone;
+                address = data.address;
+                // career = data.career;
+                $("#custname").val(custname);
+                $("#realname").val(realname);
+                $("#sex").val(sex);
+                $("#phone").val(phone);
+                $("#address").val(address);
+                // $("career").val(career);
+            }
+        })
+    })
+
     var layer = parent.layer === undefined ? layui.layer : top.layer,
         upload = layui.upload,
         laydate = layui.laydate,
@@ -25,15 +58,15 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
     });
 
     //添加验证规则
-    form.verify({
+   /* form.verify({
         userBirthday : function(value){
             if(!/^(\d{4})[\u4e00-\u9fa5]|[-\/](\d{1}|0\d{1}|1[0-2])([\u4e00-\u9fa5]|[-\/](\d{1}|0\d{1}|[1-2][0-9]|3[0-1]))*$/.test(value)){
                 return "出生日期格式不正确！";
             }
         }
-    })
+    })*/
     //选择出生日期
-    laydate.render({
+    /*laydate.render({
         elem: '.userBirthday',
         format: 'yyyy年MM月dd日',
         trigger: 'click',
@@ -44,7 +77,7 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
                 layer.msg('今天是马哥的生日，也是layuicms2.0的发布日，快来送上祝福吧！');
             }
         }
-    });
+    });*/
 
     //获取省信息
     address.provinces();
@@ -79,7 +112,7 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
     })
 
     //修改密码
-    form.on("submit(changePwd)",function(data){
+   /* form.on("submit(changePwd)",function(data){
         var index = layer.msg('提交中，请稍候',{icon: 16,time:false,shade:0.8});
         setTimeout(function(){
             layer.close(index);
@@ -87,5 +120,5 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
             $(".pwd").val('');
         },2000);
         return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-    })
+    })*/
 })

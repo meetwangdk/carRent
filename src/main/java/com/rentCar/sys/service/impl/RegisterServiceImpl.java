@@ -37,7 +37,7 @@ public class RegisterServiceImpl implements RegisterService {
         user.setLoginname(customer.getCustname());
         user.setPwd(DigestUtils.md5DigestAsHex(customer.getCustvalue().getBytes()));
         user.setIdentity(customer.getIdentity());
-        user.setRealname(customer.getCustname());
+        user.setRealname(customer.getRealname());
         user.setSex(customer.getSex());
         user.setAddress(customer.getAddress());
         user.setPhone(customer.getPhone());

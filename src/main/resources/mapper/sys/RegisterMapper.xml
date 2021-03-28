@@ -27,10 +27,10 @@
   <insert id="register">
     insert into bus_customer (identity, custname, sex,
       address, phone, career,
-      createtime,custvalue)
+      createtime,custvalue,realname)
     values (#{identity,jdbcType=VARCHAR}, #{custname,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER},
       #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{career,jdbcType=VARCHAR},
-      #{createtime,jdbcType=TIMESTAMP} ,#{custvalue,jdbcType=VARCHAR})
+      #{createtime,jdbcType=TIMESTAMP} ,#{custvalue,jdbcType=VARCHAR},#{realname,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.rentCar.bus.domain.Customer">
     insert into bus_customer
