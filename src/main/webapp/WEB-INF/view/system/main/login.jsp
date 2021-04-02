@@ -34,6 +34,7 @@
 			<input type="text" placeholder="请输入验证码" autocomplete="off" name="code" id="code" class="layui-input">
 			<img src="${alfred}/login/getCode.action" onclick="this.src=this.src+'?'">
 		</div>
+		<span></span>
 		<div class="layui-form-item">
 			<button class="layui-btn layui-block" lay-filter="login" lay-submit>登录</button>
 		</div>
@@ -69,6 +70,12 @@
 
 	    //登录按钮
 	    form.on("submit(login)",function(data){
+			if ($("#code").val() == ""){
+				layer.msg("验证码不能为空");
+				setTimeout(function (){
+					return;
+				},3000)
+			}
 	        $(this).text("登录中...").attr("disabled","disabled").addClass("layui-disabled");
 	        setTimeout(function(){
 	           $("#loginFrm").submit();

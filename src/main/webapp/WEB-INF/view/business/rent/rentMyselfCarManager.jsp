@@ -283,7 +283,7 @@
         function openRentCar(data) {
             mainIndex = layer.open({
                 type: 1,
-                title: '我要租车',
+                title: '添加至待租赁订单',
                 content: $("#saveOrUpdateDiv"),
                 area: ['690px', '380px'],
                 success: function (index) {
@@ -309,6 +309,10 @@
         form.on("submit(doSubmit)", function (obj) {
             //序列化表单数据
             var params = $("#dataFrm").serialize();
+            if (!((new Date($("#returndate").val()).getTime()) - (new Date($("#begindate").val()).getTime()) >= 24 * 60 * 60 * 1000)){
+                layer.msg("租赁时间至少为一天时长！");
+                return;
+            }
             $.post("${alfred}/customerRent/saveCustomerBusRent.action", params, function (obj) {
                 layer.msg(obj.msg);
                 //关闭弹出层

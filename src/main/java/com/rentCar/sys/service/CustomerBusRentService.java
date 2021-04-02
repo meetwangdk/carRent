@@ -41,7 +41,7 @@ public interface CustomerBusRentService {
     void updateCustomerBusRent(RentVo rentVo);
 
     /**
-     * 批量添加用户待租赁订单至租赁订单
+     * 用户待租赁订单至租赁订单
      * @param data
      */
     void addCustomerBusRentToRent(String data);

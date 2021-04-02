@@ -1,6 +1,7 @@
 package com.rentCar.sys.controller;
 
 import cn.hutool.captcha.CaptchaUtil;
+import cn.hutool.captcha.CircleCaptcha;
 import cn.hutool.captcha.LineCaptcha;
 import com.rentCar.sys.constant.SysConstant;
 import com.rentCar.sys.domain.User;
@@ -84,10 +85,10 @@ public class LoginController {
     @RequestMapping("getCode")
     public void getCode(HttpServletResponse response, HttpSession session) throws IOException {
         //定义图形验证码的长和宽
-        LineCaptcha lineCaptcha = CaptchaUtil.createLineCaptcha(116,36,4,5);
-        session.setAttribute("code",lineCaptcha.getCode());
+        CircleCaptcha circleCaptcha = CaptchaUtil.createCircleCaptcha(116, 36, 4, 5);
+        session.setAttribute("code",circleCaptcha.getCode());
         ServletOutputStream outputStream = response.getOutputStream();
-        ImageIO.write(lineCaptcha.getImage(),"JPG",outputStream);
+        ImageIO.write(circleCaptcha.getImage(),"JPG",outputStream);
         outputStream.flush();
     }
 

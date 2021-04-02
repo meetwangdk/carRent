@@ -247,6 +247,10 @@
                 if (layEvent === 'deleteManyBatch'){
                     var checkStatus = table.checkStatus('rentTable');
                     var data = checkStatus.data;
+                    if (data.length == 0 ){
+                        layer.msg("请选择您要删除的待租赁车辆！")
+                        return;
+                    }
                     var params = "";
                     $.each(data,function (i, item) {
                         if (i==0){
@@ -274,7 +278,11 @@
                 if (layEvent === 'addRentBatch'){
                     var checkStatus = table.checkStatus('rentTable');
                     var massage = checkStatus.data;
-                    layer.confirm('真的要添加这些待。。。。。吗？',function (index) {
+                    if (massage.length == 0 ){
+                        layer.msg("请选择您要添加的待租赁车辆！")
+                        return;
+                    }
+                    layer.confirm('真的要添加这些待租赁车辆至个人租赁订单吗？',function (index) {
                         var obj = JSON.stringify(massage);
                         $.ajax({
                             type:'post',
@@ -297,7 +305,7 @@
 
 
 
-       //批量添加用户个人待租赁列表到用户个人订单
+       //批量添加用户个人待租赁列表到用户个人订单 ` `
         $("#addManyRent").on('click',addHandle)
 
         //监听行工具事件

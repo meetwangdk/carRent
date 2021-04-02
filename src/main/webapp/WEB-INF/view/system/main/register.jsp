@@ -36,8 +36,8 @@
         <input type="text" placeholder="请输入真实姓名" autocomplete="off" name="realname" id="realname" class="layui-input" lay-verify="required">
     </div>
     <div class="layui-form-item input-item">
-        <label for="custname">登陆名</label>
-        <input type="text" placeholder="请输入客户名" autocomplete="off" name="custname" id="custname" class="layui-input" lay-verify="required">
+        <label for="custname">用户名</label>
+        <input type="text" placeholder="请输入用户名" autocomplete="off" name="custname" id="custname" class="layui-input" lay-verify="required">
     </div>
     <div class="layui-form-item input-item">
         <label for="custvalue">密码</label>
@@ -103,17 +103,24 @@
             if(!identityReg.test($("#identity").val())){
                 layer.msg('身份证号格式不正确');
                 return ;
-            }else if ($("#custvalue").val()==""|$("#reCustvalue").val()==""){
-                layer.msg("密码以及确认密码均不能为空")
+            }else if ($("#realname").val()==""){
+                layer.msg("用户真实姓名不能为空")
+                return;
+            }else if ($("#custvalue").val()==""|$("#reCustvalue").val()==""|$("#custname").val()==""){
+                layer.msg("用户名、密码以及确认密码均不能为空")
                 return;
             }
             else if ($("#custvalue").val() != $("#reCustvalue").val()){
                 layer.msg("两次输入密码不一致")
                 return;
-            }else if (!phoneReg.test($("#phone").val())){
+            }else if (!phoneReg.test($("#phone").val())|$("#phone").val() == ""){
                 layer.msg('电话输入有误');
                 return ;
+            }else if ($("#address").val()==""){
+                layer.msg("地址不能为空")
+                return;
             }
+
             $.ajax({
                 url:"registerCust.action",
                 type:"post",
