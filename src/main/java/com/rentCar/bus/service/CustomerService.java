@@ -53,4 +53,12 @@ public interface CustomerService {
      * @return
      */
     List<Customer> queryAllCustomerForList(CustomerVo customerVo);
+
+    /**
+     * 修改用户相关信息
+     * @param customer
+     */
+    void updateCustomerMassage(Customer customer);
+
+    String getCareer(String identity);
 }

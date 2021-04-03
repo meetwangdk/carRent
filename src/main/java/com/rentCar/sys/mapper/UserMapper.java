@@ -1,5 +1,6 @@
 package com.rentCar.sys.mapper;
 
+import com.rentCar.bus.domain.Customer;
 import com.rentCar.sys.domain.User;
 import com.rentCar.sys.vo.UserVo;
 import org.apache.ibatis.annotations.Param;
@@ -48,4 +49,10 @@ public interface UserMapper {
      * @param user
      */
     void updateByCustomer(User user);
+
+    /**
+     * 更新用户的相关信息
+     * @return
+     */
+    int updateCustomerMassage(Customer customer);
 }

@@ -21,10 +21,11 @@
 		<button type="button" class="layui-btn layui-btn-primary userFaceBtn"><i class="layui-icon">&#xe67c;</i> 啥也甭说了,我要换头像</button>
 	</div>
 	<div class="layui-col-md6 layui-col-xs12">
-		<div class="layui-form-item">
-			<label class="layui-form-label">用户名</label>
+<!--		身份证号不能让用户进行修改，必须通过管理员进行修改，不然会出问题的-->
+		<div class="layui-form-item" style="display: none">
+			<label class="layui-form-label">身份证号</label>
 			<div class="layui-input-block">
-				<input type="text" value="" id="custname" class="layui-input layui-username">
+				<input type="text" value="" id="identity" class="layui-input layui-username">
 			</div>
 		</div>
 		<div class="layui-form-item">
@@ -58,9 +59,10 @@
 				<input type="text" value="" id="career" placeholder="请输入职业" lay-verify="career" class="layui-input career">
 			</div>
 		</div>
+
 		<div class="layui-form-item">
 			<div class="layui-input-block">
-				<button class="layui-btn" lay-submit="" lay-filter="changeUser">立即提交</button>
+				<span class="layui-btn" id="changeCustomer">立即提交</span>
 				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 			</div>
 		</div>

@@ -214,4 +214,30 @@
 
     </trim>
   </insert>
+
+  <update id="updateCustomerMassage">
+    update bus_customer
+    <set>
+      <if test="realname != '' and realname != null">
+        realname = #{realname},
+      </if>
+      <if test="sex != '' and sex != null">
+        sex = #{sex},
+      </if>
+      <if test="phone != '' and phone != null">
+        phone = #{phone},
+      </if>
+      <if test="address != '' and address != null">
+        address = #{address},
+      </if>
+      <if test="career != '' and career != null">
+        career = #{career}
+      </if>
+    </set>
+    where identity = #{identity}
+  </update>
+
+  <select id="getCareer" resultMap="BaseResultMap">
+    select career from bus_customer where identity = #{identity}
+  </select>
 </mapper>

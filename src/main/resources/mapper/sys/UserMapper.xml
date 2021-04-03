@@ -249,4 +249,23 @@
   <delete id="deleteRoleUser">
     delete from sys_role_user where uid = #{uid}
   </delete>
+
+  <update id="updateCustomerMassage">
+    update sys_user
+    <set>
+      <if test="realname != '' and realname != null">
+        realname = #{realname},
+      </if>
+      <if test="sex != '' and sex != null">
+        sex = #{sex},
+      </if>
+      <if test="phone != '' and phone != null">
+        phone = #{phone},
+      </if>
+      <if test="address != '' and address != null">
+        address = #{address}
+      </if>
+    </set>
+    where identity = #{identity}
+  </update>
 </mapper>

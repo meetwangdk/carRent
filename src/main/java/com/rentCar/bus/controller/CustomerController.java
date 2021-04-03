@@ -1,8 +1,11 @@
 package com.rentCar.bus.controller;
 
+import com.rentCar.bus.domain.Customer;
+import com.rentCar.bus.mapper.CustomerMapper;
 import com.rentCar.bus.service.CustomerService;
 import com.rentCar.bus.vo.CustomerVo;
 import com.rentCar.sys.constant.SysConstant;
+import com.rentCar.sys.domain.User;
 import com.rentCar.sys.mapper.UserMapper;
 import com.rentCar.sys.utils.DataGridView;
 import com.rentCar.sys.utils.ResultObj;
@@ -10,9 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.Date;
 
-@RestController  //以json形式响应数据
+@RestController
 @RequestMapping("customer")
 public class CustomerController {
 
@@ -97,4 +104,23 @@ public class CustomerController {
         }
     }
 
+    /**
+     * 修改客户的相关信息
+     * @param customer
+     * @return
+     */
+    @RequestMapping("updateCustomerMassage")
+    public ResultObj updateCustomerMassage(Customer customer){
+        try {
+            customerService.updateCustomerMassage(customer);
+            return ResultObj.UPDATE_SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultObj.UPDATE_ERROR;
+        }
+    }
+    @RequestMapping(value = "getCareer",produces = "text/plain;charset=utf-8")
+    public String getCareer(String identity) throws UnsupportedEncodingException {
+        return customerService.getCareer(identity);
+    }
 }

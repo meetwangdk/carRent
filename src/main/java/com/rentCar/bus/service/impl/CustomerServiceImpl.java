@@ -1,6 +1,5 @@
 package com.rentCar.bus.service.impl;
 
-import cn.hutool.crypto.digest.MD5;
 import com.rentCar.bus.domain.Customer;
 import com.rentCar.bus.mapper.CustomerMapper;
 import com.rentCar.bus.service.CustomerService;
@@ -12,7 +11,6 @@ import com.rentCar.sys.utils.DataGridView;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.rentCar.sys.vo.UserVo;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -126,5 +124,17 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Customer> queryAllCustomerForList(CustomerVo customerVo) {
         return this.customerMapper.queryAllCustomer(customerVo);
+    }
+
+    @Override
+    public void updateCustomerMassage(Customer customer) {
+         userMapper.updateCustomerMassage(customer);
+         customerMapper.updateCustomerMassage(customer);
+    }
+
+    @Override
+    public String getCareer(String identity) {
+        Customer customer = customerMapper.getCareer(identity);
+        return customer.getCareer();
     }
 }
