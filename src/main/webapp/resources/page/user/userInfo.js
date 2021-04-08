@@ -75,19 +75,20 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
 
     //提交个人资料
     $('#changeCustomer').on("click",function(data){
-       /* var index = layer.msg('提交中，请稍候',{icon: 16,time:false,shade:0.8});*/
-        //将填写的用户信息存到session以便下次调取
-        // var key,userInfoHtml = '';
-        // userInfoHtml = {
-        //     'identity':$("#identity").val(),
-        //     'realname' : $("#realname").val(),
-        //     'sex' : $("#sex").val(),
-        //     'phone' : $("#phone").val(),
-        //     'address' : $("#address").val(),
-        //     'career' : $("#career").val(),
-        // };
-        // var jsonString = JSON.stringify(userInfoHtml);
-        // console.log(jsonString);
+        let phoneReg = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
+        if ($("#realname").val() == null | $("#realname").val() == ""){
+            layer.msg('真实姓名不能为空');
+            return ;
+        }else if($("#address").val() == null | $("#address").val() == ""){
+            layer.msg('地址不能为空');
+            return ;
+        }else if($("#career").val() == null | $("#career").val() == ""){
+            layer.msg('职业不能为空');
+            return ;
+        }else if (!phoneReg.test($("#phone").val())|$("#phone").val() == ""){
+            layer.msg('电话格式输入有误');
+            return ;
+        }
         $.ajax({
             url:"/customer/updateCustomerMassage.action",
             type:"post",
