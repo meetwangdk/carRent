@@ -32,10 +32,11 @@ public class RegisterServiceImpl implements RegisterService {
     @Override
     public boolean registerCust(Customer customer) {
         customer.setCreatetime(new Date());
+        customer.setCustvalue(DigestUtils.md5DigestAsHex(customer.getCustvalue().getBytes()));
         User user = new User();
         user.setUserid(Integer.valueOf(customer.getIdentity()));
         user.setLoginname(customer.getCustname());
-        user.setPwd(DigestUtils.md5DigestAsHex(customer.getCustvalue().getBytes()));
+        user.setPwd(customer.getCustvalue());
         user.setIdentity(customer.getIdentity());
         user.setRealname(customer.getRealname());
         user.setSex(customer.getSex());

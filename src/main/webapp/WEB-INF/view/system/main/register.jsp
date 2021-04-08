@@ -99,7 +99,7 @@
 
         $("#register").click(function () {
             let identityReg = /^\d+$/g;
-            let phoneReg = /^\d+$/g;
+            let phoneReg = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
             if(!identityReg.test($("#identity").val())){
                 layer.msg('身份证号格式不正确');
                 return ;
@@ -114,7 +114,7 @@
                 layer.msg("两次输入密码不一致")
                 return;
             }else if (!phoneReg.test($("#phone").val())|$("#phone").val() == ""){
-                layer.msg('电话输入有误');
+                layer.msg('电话格式输入有误');
                 return ;
             }else if ($("#address").val()==""){
                 layer.msg("地址不能为空")

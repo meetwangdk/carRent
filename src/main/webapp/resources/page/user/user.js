@@ -20,30 +20,21 @@ layui.use(['form','layer','laydate','table','laytpl'],function(){
         })
     })
 
-
-
     //添加验证规则
     form.verify({
         oldPwd : function(value, item){
             if(md5(value) != newPwd){
                 return "密码错误，请重新输入！";
             }
-        },
-        newPwd : function(value, item){
-            if(value.length < 6){
-                return "密码长度不能小于6位";
-            }
-        },
-        confirmPwd : function(value, item){
-            if(!new RegExp($("#newPwd").val()).test(value)){
-                return "两次输入密码不一致，请重新输入！";
-            }
         }
     })
 
     $("#update").click(function () {
-        if ($("#newPwd").val() != $("#confirmPwd").val){
-            layer.log("两次密码输入不一致，请重新输入");
+        if($("#newPwd").val().length < 6 ){
+            layer.msg("密码长度不能小于6位");
+            return;
+        }else if ($("#newPwd").val() != $("#confirmPwd").val()){
+            layer.msg("两次密码输入不一致，请重新输入");
             return;
         }
         $.ajax({
@@ -57,7 +48,6 @@ layui.use(['form','layer','laydate','table','laytpl'],function(){
                 if(data.code == 0){
                     parent.location.reload();
                 }
-                // console.log(data.code);
             }
         })
     })

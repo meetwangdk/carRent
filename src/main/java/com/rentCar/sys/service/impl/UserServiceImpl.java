@@ -133,7 +133,7 @@ public class UserServiceImpl implements UserService {
         this.userMapper.updateByPrimaryKeySelective(user);
         Map map = new HashMap();
         map.put("identity",String.valueOf(identity));
-        map.put("custvalue",SysConstant.USER_DEFAULT_PWD);
+        map.put("custvalue",DigestUtils.md5DigestAsHex(SysConstant.USER_DEFAULT_PWD.getBytes()));
         this.customerMapper.updateByIdentity(map);
     }
 
@@ -146,8 +146,8 @@ public class UserServiceImpl implements UserService {
     public void updateCustPwdByIdentity(String identity, String newPwd) {
         Map map = new HashMap();
         map.put("identity",identity);
-        map.put("custvalue",newPwd);
-        int i = this.customerMapper.updateByIdentity(map);
+        map.put("custvalue",DigestUtils.md5DigestAsHex(newPwd.getBytes()));
+        this.customerMapper.updateByIdentity(map);
         User user = new User();
         user.setUserid(Integer.valueOf(identity));
         user.setPwd(DigestUtils.md5DigestAsHex(newPwd.getBytes()));
